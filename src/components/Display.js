@@ -30,13 +30,13 @@ Display.propTypes = {
   error: PropTypes.bool,
   result: PropTypes.shape({
     fractions: PropTypes.array.isRequired,
-    remaining: PropTypes.number.isRequired
-  })
+    remaining: PropTypes.number.isRequired,
+  }),
 };
 
 Display.defaultProps = {
   error: false,
-  result: null
+  result: null,
 };
 
 export default Display;

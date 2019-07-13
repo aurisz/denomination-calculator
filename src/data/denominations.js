@@ -8,7 +8,7 @@ export const rupiah = [
   1000,
   500,
   100,
-  50
+  50,
 ];
 
 export default rupiah;
