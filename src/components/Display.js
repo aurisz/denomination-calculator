@@ -1,27 +1,44 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import { currencyFormatter } from '../utils';
+
 const Display = ({ result, error }) => {
   if (error) {
-    return <h4>Invalid Input</h4>;
+    return (
+      <p>
+        Invalid Input. Please try again using valid amount (e.g: 18.215,
+        Rp17500, Rp 17.500,00){' '}
+      </p>
+    );
   }
 
   if (result === null) {
     return (
-      <h4>Please insert valid amount (e.g: 18.215, Rp17500, Rp 17.500,00)</h4>
+      <p>
+        Simple app to calculate how many rupiah notes needed to make that amount
+      </p>
     );
   }
 
   return (
     <Fragment>
       {result.fractions.map((fraction, index) => (
-        <div key={index}>
-          <p>
-            {fraction.count} x {fraction.value} = {fraction.total}
-          </p>
+        <div className="card" key={index}>
+          <span>
+            {fraction.count} x {fraction.value}
+          </span>
+          <span>Rp{currencyFormatter(fraction.total)}</span>
         </div>
       ))}
-      <p>Remaining: Rp.{result.remaining}</p>
+      {result.remaining !== 0 && (
+        <div className="card">
+          <strong>Remaining:</strong>{' '}
+          <span>
+            <em>Rp{result.remaining}</em>
+          </span>
+        </div>
+      )}
     </Fragment>
   );
 };

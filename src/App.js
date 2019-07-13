@@ -10,12 +10,10 @@ const App = () => {
   const { onSubmit, value, onChange, result, error } = useInput('');
 
   return (
-    <div className="main">
+    <div className="container u-full-width">
       <h3>Rupiah Denomination Calculator</h3>
 
       <InputBox value={value} onChange={onChange} onSubmit={onSubmit} />
-
-      <br />
 
       <Display error={error} result={result} />
     </div>

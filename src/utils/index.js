@@ -42,3 +42,10 @@ export const getFractions = (input = 0) => {
     fractions,
   };
 };
+
+export const currencyFormatter = currency => {
+  return new Intl.NumberFormat('id-ID', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(currency);
+};

@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputBox = ({ value, onChange, onSubmit }) => (
-  <form onSubmit={onSubmit}>
-    <label>Amount:</label>
+  <form className="form-group" onSubmit={onSubmit}>
+    <label htmlFor="amountInput">Amount:</label>
     <input
       type="text"
+      id="amountInput"
+      className="u-full-width"
       value={value}
       onChange={onChange}
-      placeholder="Enter Amount Here..."
+      placeholder="Enter Amount Here... (e.g: 15000, Rp21.500,00)"
     />
     {/* <input type="submit" value="Submit" /> */}
   </form>
