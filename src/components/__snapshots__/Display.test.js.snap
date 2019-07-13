@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display should renders if empty 1`] = `
+<p>
+  Simple app to calculate how many rupiah notes needed to make that amount
+</p>
+`;
+
+exports[`Display should renders invalid input 1`] = `
+<p>
+  Invalid Input. Please try again using valid amount (e.g: 18.215, Rp17500, Rp 17.500,00)
+   
+</p>
+`;
+
+exports[`Display should renders valid results with remains 1`] = `
+Array [
+  <div
+    className="card"
+  >
+    <span>
+      1
+       x 
+      10000
+    </span>
+    <span>
+      Rp
+      10,000.00
+    </span>
+  </div>,
+  <div
+    className="card"
+  >
+    <span>
+      1
+       x 
+      5000
+    </span>
+    <span>
+      Rp
+      5,000.00
+    </span>
+  </div>,
+  <div
+    className="card"
+  >
+    <strong>
+      Remaining:
+    </strong>
+     
+    <span>
+      <em>
+        Rp
+        20
+      </em>
+    </span>
+  </div>,
+]
+`;
+
+exports[`Display should renders valid results without remains 1`] = `
+Array [
+  <div
+    className="card"
+  >
+    <span>
+      1
+       x 
+      10000
+    </span>
+    <span>
+      Rp
+      10,000.00
+    </span>
+  </div>,
+  <div
+    className="card"
+  >
+    <span>
+      1
+       x 
+      5000
+    </span>
+    <span>
+      Rp
+      5,000.00
+    </span>
+  </div>,
+]
+`;

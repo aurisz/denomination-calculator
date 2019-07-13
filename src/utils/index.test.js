@@ -1,4 +1,9 @@
-import { validateInput, formatInput, getFractions } from './index';
+import {
+  validateInput,
+  formatInput,
+  getFractions,
+  currencyFormatter,
+} from './index';
 
 describe('validate input', () => {
   it('should return true', () => {
@@ -39,7 +44,7 @@ describe('calculate fractions amount', () => {
   it('should return object type', () => {
     expect(typeof getFractions(15000)).toBe('object');
   });
-  it('should return total, remaining, and fractions array of objects', () => {
+  it('should return objects', () => {
     expect(getFractions(15000)).toStrictEqual({
       totalFractions: 2,
       remaining: 0,
@@ -54,5 +59,11 @@ describe('calculate fractions amount', () => {
     expect(getFractions()).toBe(null);
     expect(getFractions('')).toBe(null);
     expect(getFractions('Rp 17500')).toBe(null);
+  });
+});
+
+describe('currency formatter', () => {
+  it('should formatted correctly with fractions', () => {
+    expect(currencyFormatter(13965)).toBe('13,965.00');
   });
 });
