@@ -13,18 +13,6 @@ body {
   color: #fff;
 }
 
-label {
-  display: block;
-  color: white;
-  margin: 0 0 4px;
-}
-
-input {
-  padding: 10px;
-  font-size: 1.2em;
-  width: 100%;
-}
-
-form {
-  width: 65%;
+.main {
+  padding: 15px;
 }
