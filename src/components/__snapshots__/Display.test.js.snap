@@ -8,13 +8,20 @@ exports[`Display should renders if empty 1`] = `
 
 exports[`Display should renders invalid input 1`] = `
 <p>
-  Invalid Input. Please try again using valid amount (e.g: 18.215, Rp17500, Rp 17.500,00)
-   
+  <strong>
+    Note:
+  </strong>
+   Invalid Input. Please try again using valid amount (e.g: 18.215, Rp17500, Rp 17.500,00)
 </p>
 `;
 
 exports[`Display should renders valid results with remains 1`] = `
 Array [
+  <strong>
+    <p>
+      Results: 
+    </p>
+  </strong>,
   <div
     className="card"
   >
@@ -60,6 +67,11 @@ Array [
 
 exports[`Display should renders valid results without remains 1`] = `
 Array [
+  <strong>
+    <p>
+      Results: 
+    </p>
+  </strong>,
   <div
     className="card"
   >
