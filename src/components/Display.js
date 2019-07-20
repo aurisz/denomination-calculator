@@ -7,8 +7,8 @@ const Display = ({ result, isError }) => {
   if (isError) {
     return (
       <p>
-        Invalid Input. Please try again using valid amount (e.g: 18.215,
-        Rp17500, Rp 17.500,00){' '}
+        <strong>Note:</strong> Invalid Input. Please try again using valid
+        amount (e.g: 18.215, Rp17500, Rp 17.500,00)
       </p>
     );
   }
@@ -24,6 +24,9 @@ const Display = ({ result, isError }) => {
 
   return (
     <Fragment>
+      <strong>
+        <p>Results: </p>
+      </strong>
       {result.fractions.map((fraction, index) => (
         <div className="card" key={index}>
           <span>

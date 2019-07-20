@@ -11,6 +11,7 @@ const InputBox = ({ value, onChange, onSubmit }) => (
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder="Enter Amount Here... (e.g: 15000, Rp21.500,00)"
+      autoComplete="off"
       aria-label="amount-input"
     />
   </form>
