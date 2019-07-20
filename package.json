@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "prod": "npx serve -s dist",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "now-build": "npm run build"
   },
   "jest": {
     "setupFilesAfterEnv": [
