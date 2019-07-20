@@ -9,16 +9,21 @@ const InputBox = ({ value, onChange, onSubmit }) => (
       id="amountInput"
       className="u-full-width"
       value={value}
-      onChange={onChange}
+      onChange={e => onChange(e.target.value)}
       placeholder="Enter Amount Here... (e.g: 15000, Rp21.500,00)"
+      aria-label="amount-input"
     />
   </form>
 );
 
 InputBox.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+};
+
+InputBox.defaultProps = {
+  value: '',
 };
 
 export default InputBox;

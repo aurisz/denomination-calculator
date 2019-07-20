@@ -4,23 +4,21 @@ import {
   getFractions,
   currencyFormatter,
 } from './index';
+import { validInputs, invalidInputs } from './exampleInputs';
 
 describe('validate input', () => {
-  it('should return true', () => {
-    expect(validateInput('18.215')).toBe(true);
-    expect(validateInput('Rp17500')).toBe(true);
-    expect(validateInput('Rp17.500,00')).toBe(true);
-    expect(validateInput('Rp 120.325')).toBe(true);
-    expect(validateInput('005.000')).toBe(true);
-    expect(validateInput('001000')).toBe(true);
+  validInputs.forEach(input => {
+    it('should return true', () => {
+      expect(validateInput(input)).toBe(true);
+    });
   });
-  it('should return false', () => {
-    expect(validateInput('17,500')).toBe(false);
-    expect(validateInput('2 500')).toBe(false);
-    expect(validateInput('3000 Rp')).toBe(false);
-    expect(validateInput('Rp')).toBe(false);
-    expect(validateInput('')).toBe(false);
-    expect(validateInput('rupiah')).toBe(false);
+  invalidInputs.forEach(input => {
+    it('should return false', () => {
+      expect(validateInput(input)).toBe(false);
+    });
+  });
+
+  it('should return false if there is no argument', () => {
     expect(validateInput()).toBe(false);
   });
 });

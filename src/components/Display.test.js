@@ -15,25 +15,25 @@ describe('Display', () => {
   };
 
   it('should renders without crash', () => {
-    const wrapper = shallow(<Display error={false} result={null} />);
+    const wrapper = shallow(<Display isError={false} result={null} />);
     expect(wrapper.exists()).toBe(true);
   });
 
   it('should renders if empty', () => {
     const tree = renderer
-      .create(<Display error={false} result={null} />)
+      .create(<Display isError={false} result={null} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('should renders invalid input', () => {
-    const tree = renderer.create(<Display error result={null} />).toJSON();
+    const tree = renderer.create(<Display isError result={null} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('should renders valid results without remains', () => {
     const tree = renderer
-      .create(<Display error={false} result={testResults} />)
+      .create(<Display isError={false} result={testResults} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -42,7 +42,7 @@ describe('Display', () => {
     testResults.remaining = 20;
 
     const tree = renderer
-      .create(<Display error={false} result={testResults} />)
+      .create(<Display isError={false} result={testResults} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

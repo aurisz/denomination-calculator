@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "serve": "npx serve -s dist",
+    "prod": "npx serve -s dist",
     "test": "jest --coverage"
   },
   "jest": {
@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "@testing-library/react": "^8.0.5",
+    "@testing-library/react-hooks": "^1.1.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",

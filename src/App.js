@@ -7,15 +7,21 @@ import InputBox from './components/InputBox';
 import Display from './components/Display';
 
 const App = () => {
-  const { onSubmit, value, onChange, result, error } = useInput('');
+  const { submitValue, value, setValue, result, isError } = useInput('');
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    submitValue();
+  };
 
   return (
     <div className="container u-full-width">
       <h3>Rupiah Denomination Calculator</h3>
 
-      <InputBox value={value} onChange={onChange} onSubmit={onSubmit} />
+      <InputBox value={value} onChange={setValue} onSubmit={handleSubmit} />
 
-      <Display error={error} result={result} />
+      <Display isError={isError} result={result} />
     </div>
   );
 };

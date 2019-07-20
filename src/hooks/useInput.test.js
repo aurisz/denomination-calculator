@@ -1,42 +1,97 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import { renderHook, act } from '@testing-library/react-hooks';
+
 import { useInput } from './useInput';
+import { validInputs, invalidInputs } from '../utils/exampleInputs';
 
-function HookWrapper(props) {
-  const hook = props.hook ? props.hook() : undefined;
-  return <div hook={hook} />;
-}
+describe('useInput', () => {
+  it('setValue should changing the state', () => {
+    const { result } = renderHook(() => useInput());
 
-describe('useFormField', () => {
-  it('should render', () => {
-    const wrapper = shallow(<HookWrapper />);
+    act(() => {
+      result.current.setValue('new value');
+    });
 
-    expect(wrapper.exists()).toBeTruthy();
+    expect(result.current.value).toBe('new value');
   });
 
-  it('should set init value', () => {
-    let wrapper = shallow(<HookWrapper hook={() => useInput('')} />);
+  it('resetValue should works correctly', () => {
+    const { result } = renderHook(() => useInput('value'));
 
-    let { hook } = wrapper.find('div').props();
-    expect(hook.value).toEqual('');
+    act(() => {
+      result.current.resetValue();
+    });
 
-    wrapper = shallow(<HookWrapper hook={() => useInput('Rp17.500,00')} />);
-    // destructuring objects - {} should be inside brackets - () to avoid syntax error
-    ({ hook } = wrapper.find('div').props());
-    expect(hook.value).toEqual('Rp17.500,00');
+    expect(result.current.value).toBe('');
   });
 
-  it('should change the right value', () => {
-    const wrapper = shallow(
-      <HookWrapper hook={() => useInput('Rp17.500,00')} />
-    );
+  it('submitValue should return null if empty', () => {
+    const { result } = renderHook(() => useInput(''));
 
-    let { hook } = wrapper.find('div').props();
-    expect(hook.value).toEqual('Rp17.500,00');
+    act(() => {
+      result.current.submitValue();
+    });
 
-    hook.onChange({ target: { value: '15000' } });
+    expect(result.current.result).toBe(null);
+    expect(result.current.isError).toBe(false);
+  });
 
-    ({ hook } = wrapper.find('div').props());
-    expect(hook.value).toEqual('15000');
+  invalidInputs.forEach(input => {
+    it('submitValue should return error if value is invalid', () => {
+      const { result } = renderHook(() => useInput(input));
+
+      act(() => {
+        result.current.submitValue();
+      });
+
+      expect(result.current.result).toBe(null);
+      expect(result.current.isError).toBe(true);
+    });
+  });
+
+  validInputs.forEach(input => {
+    it('submitValue should not return null if value is valid', () => {
+      const { result } = renderHook(() => useInput(input));
+
+      act(() => {
+        result.current.submitValue();
+      });
+
+      expect(result.current.result).not.toBe(null);
+      expect(result.current.isError).toBe(false);
+    });
+  });
+
+  it('submitValue should return correctly with remaining', () => {
+    const { result } = renderHook(() => useInput('Rp17.525,00'));
+
+    act(() => {
+      result.current.submitValue();
+    });
+
+    expect(result.current.result).toStrictEqual({
+      fractions: [
+        { count: 1, total: 10000, value: 10000 },
+        { count: 1, total: 5000, value: 5000 },
+        { count: 1, total: 2000, value: 2000 },
+        { count: 1, total: 500, value: 500 },
+      ],
+      remaining: 25,
+      totalFractions: 4,
+    });
+    expect(result.current.isError).toBe(false);
+  });
+  it('submitValue should return correctly without remaining', () => {
+    const { result } = renderHook(() => useInput('10000'));
+
+    act(() => {
+      result.current.submitValue();
+    });
+
+    expect(result.current.result).toStrictEqual({
+      fractions: [{ count: 1, total: 10000, value: 10000 }],
+      remaining: 0,
+      totalFractions: 1,
+    });
+    expect(result.current.isError).toBe(false);
   });
 });

@@ -2,37 +2,32 @@ import { useState } from 'react';
 
 import { getFractions, validateInput, formatInput } from '../utils';
 
-export const useInput = initialValue => {
+export const useInput = (initialValue = '') => {
   const [value, setValue] = useState(initialValue);
   const [result, setResult] = useState(null);
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return {
     value,
     setValue,
-    reset: () => setValue(''),
+    resetValue: () => setValue(''),
     result,
-    error,
-    onChange: event => {
-      setValue(event.target.value);
-    },
-    onSubmit: event => {
-      event.preventDefault();
-
+    isError,
+    submitValue: () => {
       const isValidated = validateInput(value);
 
       if (isValidated) {
         const formattedInput = formatInput(value);
         const fractionResult = getFractions(formattedInput);
         setResult(fractionResult);
-        setError(false);
+        setIsError(false);
       } else {
-        setError(true);
+        setIsError(true);
       }
 
       if (value === '') {
         setResult(null);
-        setError(false);
+        setIsError(false);
       }
     },
   };

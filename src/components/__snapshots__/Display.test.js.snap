@@ -2,7 +2,7 @@
 
 exports[`Display should renders if empty 1`] = `
 <p>
-  Simple app to calculate how many rupiah notes needed to make that amount
+  Simple React app to calculate how many rupiah notes needed to make that amount
 </p>
 `;
 

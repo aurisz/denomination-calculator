@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { currencyFormatter } from '../utils';
 
-const Display = ({ result, error }) => {
-  if (error) {
+const Display = ({ result, isError }) => {
+  if (isError) {
     return (
       <p>
         Invalid Input. Please try again using valid amount (e.g: 18.215,
@@ -16,7 +16,8 @@ const Display = ({ result, error }) => {
   if (result === null) {
     return (
       <p>
-        Simple app to calculate how many rupiah notes needed to make that amount
+        Simple React app to calculate how many rupiah notes needed to make that
+        amount
       </p>
     );
   }
@@ -44,7 +45,7 @@ const Display = ({ result, error }) => {
 };
 
 Display.propTypes = {
-  error: PropTypes.bool,
+  isError: PropTypes.bool,
   result: PropTypes.shape({
     fractions: PropTypes.array.isRequired,
     remaining: PropTypes.number.isRequired,
@@ -52,7 +53,7 @@ Display.propTypes = {
 };
 
 Display.defaultProps = {
-  error: false,
+  isError: false,
   result: null,
 };
 
