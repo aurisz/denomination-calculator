@@ -1,7 +1,9 @@
-# Denomination Calculator
+# Rupiah Denomination Calculator
 
 Simple React app built with react hooks to calculate how many rupiah notes needed to make that
 amount
+
+[LIVE DEMO](https://denomination-calculator.aurisophanz.now.sh).
 
 ## Setup
 
