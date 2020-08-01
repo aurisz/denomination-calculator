@@ -1,33 +1,54 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const Display = ({ result, error }) => {
-  if (error) {
-    return <h4>Invalid Input</h4>;
+import { currencyFormatter } from '../utils';
+
+const Display = ({ result, isError }) => {
+  if (isError) {
+    return (
+      <p>
+        <strong>Note:</strong> Invalid Input. Please try again using valid
+        amount (e.g: 18.215, Rp17500, Rp 17.500,00)
+      </p>
+    );
   }
 
   if (result === null) {
     return (
-      <h4>Please insert valid amount (e.g: 18.215, Rp17500, Rp 17.500,00)</h4>
+      <p>
+        Simple React app to calculate how many rupiah notes needed to make that
+        amount
+      </p>
     );
   }
 
   return (
     <Fragment>
+      <strong>
+        <p>Results: </p>
+      </strong>
       {result.fractions.map((fraction, index) => (
-        <div key={index}>
-          <p>
-            {fraction.count} x {fraction.value} = {fraction.total}
-          </p>
+        <div className="card" key={index}>
+          <span>
+            {fraction.count} x {fraction.value}
+          </span>
+          <span>Rp{currencyFormatter(fraction.total)}</span>
         </div>
       ))}
-      <p>Remaining: Rp.{result.remaining}</p>
+      {result.remaining !== 0 && (
+        <div className="card">
+          <strong>Remaining:</strong>{' '}
+          <span>
+            <em>Rp{result.remaining}</em>
+          </span>
+        </div>
+      )}
     </Fragment>
   );
 };
 
 Display.propTypes = {
-  error: PropTypes.bool,
+  isError: PropTypes.bool,
   result: PropTypes.shape({
     fractions: PropTypes.array.isRequired,
     remaining: PropTypes.number.isRequired,
@@ -35,7 +56,7 @@ Display.propTypes = {
 };
 
 Display.defaultProps = {
-  error: false,
+  isError: false,
   result: null,
 };
 

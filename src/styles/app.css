@@ -5,26 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  color: #fff;
+  background-color: #eeeeee;
 }
 
-label {
-  display: block;
-  color: white;
-  margin: 0 0 4px;
-}
-
-input {
+.card {
+  background: #fff;
+  border-radius: 5px;
   padding: 10px;
-  font-size: 1.2em;
-  width: 100%;
-}
-
-form {
-  width: 65%;
+  margin: 10px 0;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  display: flex;
+  justify-content: space-between;
 }

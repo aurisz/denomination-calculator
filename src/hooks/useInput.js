@@ -1,33 +1,33 @@
 import { useState } from 'react';
 
-import { getFractions, validateInput } from '../utils';
-import { rupiah } from '../data/denominations';
+import { getFractions, validateInput, formatInput } from '../utils';
 
-export const useInput = initialValue => {
+export const useInput = (initialValue = '') => {
   const [value, setValue] = useState(initialValue);
   const [result, setResult] = useState(null);
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return {
     value,
     setValue,
-    reset: () => setValue(''),
+    resetValue: () => setValue(''),
     result,
-    error,
-    onChange: event => {
-      setValue(event.target.value);
-    },
-    onSubmit: event => {
-      event.preventDefault();
+    isError,
+    submitValue: () => {
+      const isValidated = validateInput(value);
 
-      if (validateInput(value)) {
-        const fractionsResult = getFractions(value, rupiah);
-        fractionsResult.isValidated = true;
-
-        setResult(getFractions(value, rupiah));
-        setError(false);
+      if (isValidated) {
+        const formattedInput = formatInput(value);
+        const fractionResult = getFractions(formattedInput);
+        setResult(fractionResult);
+        setIsError(false);
       } else {
-        setError(true);
+        setIsError(true);
+      }
+
+      if (value === '') {
+        setResult(null);
+        setIsError(false);
       }
     },
   };
