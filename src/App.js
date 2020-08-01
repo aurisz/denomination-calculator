@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div className='container u-full-width'>
-      <h3>Rupiah Denomination Calculator</h3>
+      <h3>Rupiah Denomination Calculator 2</h3>
 
       <InputBox value={value} onChange={setValue} onSubmit={handleSubmit} />
 
