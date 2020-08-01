@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import './styles/main.css';
+import './styles/main.css'
 
-import { useInput } from './hooks/useInput';
-import InputBox from './components/InputBox';
-import Display from './components/Display';
+import { useInput } from './hooks/useInput'
+import InputBox from './components/InputBox'
+import Display from './components/Display'
 
 const App = () => {
-  const { onSubmit, value, onChange, result, error } = useInput('');
+  const { onSubmit, value, onChange, result, error } = useInput('')
 
   return (
-    <div className="app">
-      <h1>Rupiah Denomination Calculator</h1>
+    <div className='app'>
+      <h1>Rupiah Denomination Calculator 2</h1>
 
       <InputBox value={value} onChange={onChange} onSubmit={onSubmit} />
 
@@ -19,7 +19,7 @@ const App = () => {
 
       <Display error={error} result={result} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
